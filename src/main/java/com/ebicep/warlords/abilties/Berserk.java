@@ -58,7 +58,7 @@ public class Berserk extends AbstractAbility {
             }
         });
 
-        Utils.playGlobalSound(player.getLocation(), "warrior.berserk.activation", 2, 1);
+        Utils.playGlobalSound(player.getLocation(), "warrior.berserk.activation", 2, 0.1f);
 
         new GameRunnable(wp.getGame()) {
             @Override

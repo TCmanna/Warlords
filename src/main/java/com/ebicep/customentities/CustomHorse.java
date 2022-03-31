@@ -52,6 +52,8 @@ public class CustomHorse extends EntityHorse {
         horse.setColor(Horse.Color.BROWN);
         horse.setStyle(Horse.Style.NONE);
         horse.setAdult();
+        horse.setCustomName("Dinnerbone");
+        horse.setCustomNameVisible(false);
         ((EntityLiving) ((CraftEntity) horse).getHandle()).getAttributeInstance(GenericAttributes.MOVEMENT_SPEED).setValue(speed);
         horse.setPassenger(player);
         this.horse = horse;

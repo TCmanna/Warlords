@@ -53,7 +53,7 @@ public class InspiringPresence extends AbstractAbility {
                     }, duration * 20);
                 });
 
-        Utils.playGlobalSound(player.getLocation(), "paladin.inspiringpresence.activation", 2, 1);
+        Utils.playGlobalSound(player.getLocation(), "paladin.inspiringpresence.activation", 2, 2);
 
         new GameRunnable(wp.getGame()) {
             @Override

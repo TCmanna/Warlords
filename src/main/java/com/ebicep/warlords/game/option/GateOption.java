@@ -139,8 +139,9 @@ public class GateOption extends AbstractCuboidOption implements  TimerSkipAbleMa
         if (this.shouldBroadcast) {
             for (Map.Entry<Player, Team> entry : iterable(game.onlinePlayersWithoutSpectators())) {
                 Player player = entry.getKey();
-                player.playSound(player.getLocation(), Sound.WITHER_SPAWN, 5, 1);
-                sendMessage(player, false, ChatColor.YELLOW + "Gates opened! " + ChatColor.RED + "FIGHT!");
+                player.playSound(player.getLocation(), Sound.EXPLODE, 5, 0.1f);
+                player.playSound(player.getLocation(), Sound.EXPLODE, 5, 0.1f);
+                sendMessage(player, false, ChatColor.YELLOW + "GATES DOWN! " + ChatColor.RED + "WHAT ARE YOU GUYS DOING?? GO IN!");
 
                 Utils.resetPlayerMovementStatistics(player);
             }
@@ -189,7 +190,8 @@ public class GateOption extends AbstractCuboidOption implements  TimerSkipAbleMa
                 if (shouldBroadcast) {
                     for (Map.Entry<Player, Team> entry : iterable(game.onlinePlayersWithoutSpectators())) {
                         Player player = entry.getKey();
-                        player.playSound(player.getLocation(), delay == 0 ? Sound.WITHER_SPAWN : Sound.NOTE_STICKS, 1, 1);
+                        player.playSound(player.getLocation(), delay == 0 ? Sound.EXPLODE : Sound.NOTE_STICKS, 1, 0.1f);
+                        player.playSound(player.getLocation(), delay == 0 ? Sound.EXPLODE : Sound.NOTE_STICKS, 1, 0.1f);
                         String number = (delay >= 8 ? ChatColor.GREEN
                                 : delay >= 4 ? ChatColor.YELLOW
                                         : ChatColor.RED).toString() + delay;
@@ -209,7 +211,7 @@ public class GateOption extends AbstractCuboidOption implements  TimerSkipAbleMa
                             for (Map.Entry<Player, Team> entry : iterable(game.onlinePlayersWithoutSpectators())) {
                                 Player player = entry.getKey();
                                 String s = delay == 1 ? "" : "s";
-                                sendMessage(player, false, ChatColor.YELLOW + "The gates will fall in " + ChatColor.RED + delay + ChatColor.YELLOW + " second" + s + "!");
+                                sendMessage(player, false, ChatColor.YELLOW + "The gates will explode in " + ChatColor.RED + delay + ChatColor.YELLOW + " second" + s + "!");
                             }
                             break;
                     }

@@ -65,28 +65,30 @@ public class PreLobbyState implements State, TimerDebugAble {
                 });
                 if (time == 30) {
                     game.forEachOnlinePlayerWithoutSpectators((player, team) -> {
-                        sendMessage(player, false, ChatColor.YELLOW + "The game starts in " + ChatColor.GREEN + "30 " + ChatColor.YELLOW + "seconds!");
-                        player.playSound(player.getLocation(), Sound.NOTE_STICKS, 1, 1);
+                        sendMessage(player, false, ChatColor.RED + "TACTICAL NUKE IN " + ChatColor.GREEN + "30 " + ChatColor.RED + "SECONDS!");
+                        player.playSound(player.getLocation(), Sound.NOTE_STICKS, 1, 2);
                     });
                 } else if (time == 20) {
                     game.forEachOnlinePlayerWithoutSpectators((player, team) -> {
-                        sendMessage(player, false, ChatColor.YELLOW + "The game starts in 20 seconds!");
-                        player.playSound(player.getLocation(), Sound.NOTE_STICKS, 1, 1);
+                        sendMessage(player, false, ChatColor.RED + "TACTICAL NUKE IN 20 SECONDS!");
+                        player.playSound(player.getLocation(), Sound.NOTE_STICKS, 1, 0.1f);
                     });
                 } else if (time == 10) {
                     game.forEachOnlinePlayerWithoutSpectators((player, team) -> {
-                        sendMessage(player, false, ChatColor.YELLOW + "The game starts in " + ChatColor.GOLD + "10 " + ChatColor.YELLOW + "seconds!");
-                        player.playSound(player.getLocation(), Sound.NOTE_STICKS, 1, 1);
+                        sendMessage(player, false, ChatColor.RED + "TACTICAL NUKE IN " + ChatColor.GOLD + "10 " + ChatColor.RED + "SECONDS!");
+                        player.playSound(player.getLocation(), Sound.NOTE_STICKS, 1, 2);
                     });
                 } else if (time <= 5 && time != 0) {
                     game.forEachOnlinePlayerWithoutSpectators((player, team) -> {
-                        String s = time == 1 ? "!" : "s!";
-                        sendMessage(player, false, ChatColor.YELLOW + "The game starts in " + ChatColor.RED + time + ChatColor.YELLOW + " second" + s);
-                        player.playSound(player.getLocation(), Sound.NOTE_STICKS, 1, 1);
+                        String s = time == 1 ? "!" : "S!";
+                        sendMessage(player, false, ChatColor.RED + "TACTICAL NUKE IN " + ChatColor.RED + time + ChatColor.RED + " SECOND" + s);
+                        player.playSound(player.getLocation(), Sound.NOTE_STICKS, 1, 0.1f);
                     });
                 } else if (time == 0) {
                     game.forEachOnlinePlayerWithoutSpectators((player, team) -> {
-                        player.playSound(player.getLocation(), "gamestart", 1, 1);
+                        player.playSound(player.getLocation(), Sound.EXPLODE, 1, 0.1f);
+                        player.playSound(player.getLocation(), Sound.EXPLODE, 1, 0.1f);
+                        player.playSound(player.getLocation(), Sound.EXPLODE, 1, 0.1f);
                         player.setAllowFlight(false);
                     });
                 }

@@ -55,8 +55,8 @@ public enum GameMode {
             ));
             options.add(TextOption.Type.TITLE.create(
                     10,
-                    ChatColor.GREEN + "GO!",
-                    ChatColor.YELLOW + "Steal and capture the enemy flag!"
+                    ChatColor.GREEN + "GO IN!",
+                    ChatColor.YELLOW + "YOU GUYS ARE TROLLING"
             ));
             options.add(new NoRespawnIfOfflineOption());
             return options;

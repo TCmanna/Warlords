@@ -16,7 +16,7 @@ public class SyncTimerState implements State {
     @Override
     public void begin() {
         game.forEachOnlinePlayerWithoutSpectators((player, team) -> {
-            PacketUtils.sendTitle(player, "", "§aSyncing Timers...", 0, 20, 0);
+            PacketUtils.sendTitle(player, "", "§aSyncing Timers...", 0, 30, 0);
         });
     }
 

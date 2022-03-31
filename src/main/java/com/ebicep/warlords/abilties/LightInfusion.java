@@ -44,7 +44,7 @@ public class LightInfusion extends AbstractAbility {
                 duration * 20
         );
 
-        Utils.playGlobalSound(player.getLocation(), "paladin.infusionoflight.activation", 2, 1);
+        Utils.playGlobalSound(player.getLocation(), "paladin.infusionoflight.activation", 2, 2);
 
         for (int i = 0; i < 10; i++) {
             Location particleLoc = player.getLocation().add(0, 1.5, 0);
