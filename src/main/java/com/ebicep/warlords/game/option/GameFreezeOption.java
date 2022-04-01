@@ -63,7 +63,7 @@ public class GameFreezeOption implements Option, Listener {
                 ((EntityLiving) ((CraftEntity) p.getVehicle()).getHandle()).getAttributeInstance(GenericAttributes.MOVEMENT_SPEED).setValue(0);
             }
             p.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 9999999, 100000));
-            PacketUtils.sendTitle(p, ChatColor.RED + "A LITTLE TROLLING", message, 0, 9999999, 0);
+            PacketUtils.sendTitle(p, ChatColor.RED + "GAME PAUSED", message, 0, 9999999, 0);
         });
     }
 

@@ -579,19 +579,19 @@ public class WarlordsEvents implements Listener {
                     prefix = prefixColor + "";
                 } else if (PermissionHandler.isGameTester(player)) {
                     prefixColor = ChatColor.YELLOW;
-                    prefix = prefixColor + "[T] ";
+                    prefix = prefixColor + "[KFC EMPLOYEE] ";
                 } else if (PermissionHandler.isGameStarter(player)) {
                     prefixColor = ChatColor.YELLOW;
-                    prefix = prefixColor + "[GS] ";
+                    prefix = prefixColor + "[KFC EMPLOYEE] ";
                 } else if (PermissionHandler.isContentCreator(player)) {
                     prefixColor = ChatColor.LIGHT_PURPLE;
                     prefix = prefixColor + "[CT] ";
                 } else if (PermissionHandler.isCoordinator(player)) {
                     prefixColor = ChatColor.GOLD;
-                    prefix = prefixColor + "[HGS] ";
+                    prefix = prefixColor + "[KFC EMPLOYEE] ";
                 } else if (PermissionHandler.isAdmin(player)) {
                     prefixColor = ChatColor.DARK_AQUA;
-                    prefix = prefixColor + "[ADMIN] ";
+                    prefix = prefixColor + "[KFC MANAGER] ";
                 } else {
                     System.out.println(ChatColor.RED + "[WARLORDS] Player has invalid rank or permissions have not been set up properly!");
                 }
