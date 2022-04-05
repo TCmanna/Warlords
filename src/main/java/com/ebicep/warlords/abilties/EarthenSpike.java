@@ -34,7 +34,7 @@ public class EarthenSpike extends AbstractAbility {
     };
 
     public EarthenSpike() {
-        super("Earthen Spike", 404, 562, 0, 100, 15, 175);
+        super("Earthen Spike", 506, 685, 0, 120, 15, 200);
     }
 
     @Override
@@ -86,7 +86,7 @@ public class EarthenSpike extends AbstractAbility {
                             Utils.playGlobalSound(spikeLoc, REPEATING_SOUND[(earthenSpikeBlock.getDuration() / 5) % 4], 2, 1);
                         }
 
-                        if (earthenSpikeBlock.getDuration() > 30) {
+                        if (earthenSpikeBlock.getDuration() > 300) {
                             //out of time
                             earthenSpikeBlock.setDuration(-1);
                             this.cancel();

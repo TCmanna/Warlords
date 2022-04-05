@@ -23,7 +23,7 @@ public class Boulder extends AbstractAbility {
     private static final double GRAVITY = -0.0059;
 
     public Boulder() {
-        super("Boulder", 451, 673, 7.05f, 80, 15, 175);
+        super("Boulder", 643, 840, 7.05f, 80, 15, 200);
     }
 
     @Override
@@ -115,9 +115,9 @@ public class Boulder extends AbstractAbility {
                             ) {
                                 Vector v;
                                 if (p == directHitFinal) {
-                                    v = initialCastLocation.toVector().subtract(p.getLocation().toVector()).normalize().multiply(-1.15).setY(0.2);
+                                    v = initialCastLocation.toVector().subtract(p.getLocation().toVector()).normalize().multiply(-1.35).setY(0.3);
                                 } else {
-                                    v = p.getLocation().toVector().subtract(newLoc.toVector()).normalize().multiply(1.15).setY(0.2);
+                                    v = p.getLocation().toVector().subtract(newLoc.toVector()).normalize().multiply(1.35).setY(0.3);
                                 }
                                 p.setVelocity(v, false);
                                 p.addDamageInstance(wp, name, minDamageHeal, maxDamageHeal, critChance, critMultiplier, false);

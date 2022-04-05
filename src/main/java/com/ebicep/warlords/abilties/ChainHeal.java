@@ -16,7 +16,7 @@ public class ChainHeal extends AbstractChainBase {
     private final int bounceRange = 10;
 
     public ChainHeal() {
-        super("Chain Heal", 533, 719, 7.99f, 40, 20, 175);
+        super("Chain Heal", 454, 613, 7.99f, 40, 20, 200);
     }
 
     @Override
@@ -24,9 +24,9 @@ public class ChainHeal extends AbstractChainBase {
         description = "§7Discharge a beam of energizing lightning\n" +
                 "§7that heals you and a targeted friendly\n" +
                 "§7player for §a" + format(minDamageHeal) + " §7- §a" + format(maxDamageHeal) + " §7health and\n" +
-                "§7jumps to §e1 §7additional target within\n" +
+                "§7jumps to §e2 §7additional target within\n" +
                 "§e" + bounceRange + " §7blocks. The last jump heals\n" +
-                "§7for §c20% §7less." +
+                "§7for §c10% §7less." +
                 "\n\n" +
                 "§7Each ally healed reduces the cooldown of\n" +
                 "§7Boulder by §62.5 §7seconds." +
@@ -56,8 +56,20 @@ public class ChainHeal extends AbstractChainBase {
                         .excluding(wp, nearPlayer)
                 ) {
                     chain(nearPlayer.getLocation(), chainPlayerOne.getLocation());
-                    chainPlayerOne.addHealingInstance(wp, name, minDamageHeal * 0.8f, maxDamageHeal * 0.8f, critChance, critMultiplier, false, false);
+                    chainPlayerOne.addHealingInstance(wp, name, minDamageHeal * 0.9f, maxDamageHeal * 0.9f, critChance, critMultiplier, false, false);
                     hitCounter++;
+
+                    for (WarlordsPlayer chainPlayerTwo : PlayerFilter
+                            .entitiesAround(chainPlayerOne, bounceRange, bounceRange, bounceRange)
+                            .aliveTeammatesOf(wp)
+                            .excluding(wp, nearPlayer)
+                    ) {
+                        chain(chainPlayerOne.getLocation(), chainPlayerTwo.getLocation());
+                        chainPlayerTwo.addHealingInstance(wp, name, minDamageHeal * 0.8f, maxDamageHeal * 0.8f, critChance, critMultiplier, false, false);
+                        hitCounter++;
+
+                        break;
+                    }
 
                     break;
                 }

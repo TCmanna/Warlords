@@ -24,16 +24,16 @@ import org.bukkit.metadata.FixedMetadataValue;
 
 public class HealingTotem extends AbstractTotemBase {
 
-    private final int radius = 7;
-    private final int duration = 6;
+    private final int radius = 6;
+    private final int duration = 5;
     private final int crippleDuration = 6;
 
     public HealingTotem() {
-        super("Healing Totem", 191, 224, 62.64f, 60, 25, 175);
+        super("Healing Totem", 191, 224, 62.64f, 60, 15, 200);
     }
 
     public HealingTotem(ArmorStand totem) {
-        super("Healing Totem", 191, 224, 62.64f, 60, 25, 175, totem);
+        super("Healing Totem", 191, 224, 62.64f, 60, 15, 200, totem);
     }
 
     @Override
