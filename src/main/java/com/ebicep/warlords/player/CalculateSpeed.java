@@ -18,7 +18,7 @@ public class CalculateSpeed {
 
     public CalculateSpeed(Consumer<Float> updateWalkingSpeed, int baseModifier) {
         // For some reason, the base speed of your weapon matters for your min speed, but your max speed is not affected by this
-        this.minspeed = BASE_SPEED * (1 + baseModifier / 100f) * (1 - .35f);
+        this.minspeed = BASE_SPEED * (1 + baseModifier / 100f) * (1 - .5f);
         this.maxspeed = BASE_SPEED * 1.40f;
         this.updateWalkingSpeed = updateWalkingSpeed;
         this.modifiers.add(new Modifier("BASE", baseModifier, 0, Collections.emptyList(), false));
