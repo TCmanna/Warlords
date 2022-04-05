@@ -13,7 +13,7 @@ import org.bukkit.entity.Player;
 
 public class IceBarrier extends AbstractAbility {
 
-    private final int duration = 6;
+    private final int duration = 10;
     private int damageReductionPercent = 50;
 
     public float getDamageReduction() {
@@ -35,7 +35,7 @@ public class IceBarrier extends AbstractAbility {
                 "§7of cold air, reducing damage taken by\n" +
                 "§c" + damageReductionPercent + "%§7, While active, taking melee\n" +
                 "§7damage reduces the attacker's movement\n" +
-                "§7speed by §e20% §7for §62 §7seconds. Lasts\n" +
+                "§7speed by §e40% §7for §62 §7seconds. Lasts\n" +
                 "§6" + duration + " §7seconds.";
     }
 

@@ -286,7 +286,7 @@ public class WarlordsEvents implements Listener {
                 }
 
                 if (wpVictim.getCooldownManager().hasCooldown(IceBarrier.class)) {
-                    wpAttacker.getSpeed().addSpeedModifier("Ice Barrier", -20, 2 * 20);
+                    wpAttacker.getSpeed().addSpeedModifier("Ice Barrier", -40, 2 * 20);
                 }
             }
         /*} else if (e.getEntity() instanceof Horse && e.getDamager() instanceof Player) {

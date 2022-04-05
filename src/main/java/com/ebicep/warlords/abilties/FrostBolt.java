@@ -13,11 +13,11 @@ import javax.annotation.Nonnull;
 public class FrostBolt extends AbstractProjectileBase {
 
     private static final int MAX_FULL_DAMAGE_DISTANCE = 30;
-    private static final double DIRECT_HIT_MULTIPLIER = 1.15;
+    private static final double DIRECT_HIT_MULTIPLIER = 1.3;
     private static final float HITBOX = 4;
 
     public FrostBolt() {
-        super("Frostbolt", 268.8f, 345.45f, 0, 70, 20, 175, 2, 300, false);
+        super("Frostbolt", 304.2f, 383.5f, 0, 70, 20, 175, 2, 300, false);
     }
 
     @Override
@@ -92,7 +92,7 @@ public class FrostBolt extends AbstractProjectileBase {
                 "§7for §c" + format(minDamageHeal) + " §7- §c" + format(maxDamageHeal) + " §7damage and slow\n" +
                 "§7by §e25% §7for §62 §7seconds. A\n" +
                 "§7direct hit will cause the enemy\n" +
-                "§7to take an additional §c15% §7extra\n" +
+                "§7to take an additional §c30% §7extra\n" +
                 "§7damage." +
                 "\n\n" +
                 "§7Has an optimal range of §e" + MAX_FULL_DAMAGE_DISTANCE + " §7blocks.";
