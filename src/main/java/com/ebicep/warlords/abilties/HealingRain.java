@@ -1,7 +1,6 @@
 package com.ebicep.warlords.abilties;
 
 import com.ebicep.warlords.abilties.internal.AbstractAbility;
-import com.ebicep.warlords.abilties.internal.Overheal;
 import com.ebicep.warlords.effects.ParticleEffect;
 import com.ebicep.warlords.effects.circle.AreaEffect;
 import com.ebicep.warlords.effects.circle.CircleEffect;
@@ -22,26 +21,19 @@ import java.util.Set;
 
 public class HealingRain extends AbstractAbility {
 
-    private int duration = 12;
-    private int radius = 8;
+    private int duration = 10;
+    private int radius = 6;
 
     public HealingRain() {
-        super("Healing Rain", 100, 125, 52.85f, 50, 25, 200);
+        super("Healing Rain", 170, 230, 70.49f, 50, 15, 200);
     }
 
     @Override
     public void updateDescription(Player player) {
         description = "§7Conjure rain at targeted\n" +
                 "location that will restore §a" + format(minDamageHeal) + "\n" +
-                "§7- §a" + format(maxDamageHeal) + " §7health every 0.5 seconds\n" +
-                "to allies. Lasts §6" + duration + " §7seconds." +
-                "\n\n" +
-                "You may move Healing Rain to your location\n" +
-                "using your SNEAK key." +
-                "\n\n" +
-                "§7Healing Rain can overheal allies for up to\n" +
-                "§a10% §7of their max health as bonus health\n" +
-                "§7for §6" + Overheal.OVERHEAL_DURATION + " §7seconds.";
+                "§7- §a" + format(maxDamageHeal) + " §7health every second\n" +
+                "to allies. Lasts §6" + duration + " §7seconds.";
     }
 
     @Override
@@ -81,25 +73,12 @@ public class HealingRain extends AbstractAbility {
 
         location.add(0, 1, 0);
 
-        addSecondaryAbility(() -> {
-                    if (wp.isAlive()) {
-                        wp.playSound(wp.getLocation(), "mage.timewarp.teleport", 2, 1.35f);
-                        wp.sendMessage(WarlordsPlayer.GIVE_ARROW_GREEN + " §7You moved your §aHealing Rain §7to your current location.");
-                        location.setX(wp.getLocation().getX());
-                        location.setY(wp.getLocation().getY());
-                        location.setZ(wp.getLocation().getZ());
-                    }
-                },
-                true,
-                secondaryAbility -> !wp.getCooldownManager().hasCooldown(healingRainCooldown)
-        );
-
         new GameRunnable(wp.getGame()) {
             int counter = 0;
 
             @Override
             public void run() {
-                if (counter % 10 == 0) {
+                if (counter % 20 == 0) {
                     for (WarlordsPlayer teammateInRain : PlayerFilter
                             .entitiesAround(location, radius, radius, radius)
                             .aliveTeammatesOf(wp)
@@ -113,13 +92,6 @@ public class HealingRain extends AbstractAbility {
                                 critMultiplier,
                                 false,
                                 false);
-
-                        if (teammateInRain != wp) {
-                            teammateInRain.getCooldownManager().removeCooldown(Overheal.OVERHEAL_MARKER);
-                            teammateInRain.getCooldownManager().addRegularCooldown("Overheal",
-                                    "OVERHEAL", Overheal.class, Overheal.OVERHEAL_MARKER, wp, CooldownTypes.BUFF, cooldownManager -> {
-                                    }, Overheal.OVERHEAL_DURATION * 20);
-                        }
                     }
                 }
                 counter++;

@@ -1,10 +1,8 @@
 package com.ebicep.warlords.abilties;
 
 import com.ebicep.warlords.abilties.internal.AbstractAbility;
-import com.ebicep.warlords.abilties.internal.Overheal;
 import com.ebicep.warlords.effects.ParticleEffect;
 import com.ebicep.warlords.player.WarlordsPlayer;
-import com.ebicep.warlords.player.cooldowns.CooldownTypes;
 import com.ebicep.warlords.util.bukkit.Matrix4d;
 import com.ebicep.warlords.util.warlords.GameRunnable;
 import com.ebicep.warlords.util.warlords.PlayerFilter;
@@ -18,26 +16,20 @@ import javax.annotation.Nonnull;
 public class WaterBreath extends AbstractAbility {
 
     public WaterBreath() {
-        super("Water Breath", 528, 723, 6.3f, 60, 25, 175);
+        super("Water Breath", 557, 752, 12.72f, 60, 25, 175);
     }
 
     @Override
     public void updateDescription(Player player) {
-        description = "§7Breathe water in a cone in front of you,\n" +
-                "§7knocking back enemies, cleansing all §ede-buffs\n" +
-                "§7and restoring §a" + format(minDamageHeal) + " §7- §a" + format(maxDamageHeal) + " §7health to\n" +
-                "§7yourself and all allies hit." +
-                "\n\n" +
-                "§7Water Breath can overheal allies for up to\n" +
-                "§a10% §7of their max health as bonus health\n" +
-                "§7for §6" + Overheal.OVERHEAL_DURATION + " §7seconds.";
+        description = "§7Breathe water in a cone in front of\n" +
+                "§7you, knocking back enemies and\n" +
+                "§7restoring §a" + format(minDamageHeal) + " §7- §a" + format(maxDamageHeal) + " §7health to\n" +
+                "§7yourself and all allies hit.";
     }
 
     @Override
     public boolean onActivate(@Nonnull WarlordsPlayer wp, @Nonnull Player player) {
         wp.subtractEnergy(energyCost);
-        wp.getCooldownManager().removeDebuffCooldowns();
-        wp.getSpeed().removeSlownessModifiers();
         wp.addHealingInstance(wp, name, minDamageHeal, maxDamageHeal, critChance, critMultiplier, false, false);
 
         Location playerLoc = player.getLocation();
@@ -55,13 +47,7 @@ public class WaterBreath extends AbstractAbility {
                 Vector direction = target.getLocation().subtract(hitbox).toVector().normalize();
                 if (viewDirection.dot(direction) > .68) {
                     if (wp.isTeammateAlive(target)) {
-                        target.getCooldownManager().removeDebuffCooldowns();
-                        target.getSpeed().removeSlownessModifiers();
                         target.addHealingInstance(wp, name, minDamageHeal, maxDamageHeal, critChance, critMultiplier, false, false);
-                        target.getCooldownManager().removeCooldown(Overheal.OVERHEAL_MARKER);
-                        target.getCooldownManager().addRegularCooldown("Overheal",
-                                "OVERHEAL", Overheal.class, Overheal.OVERHEAL_MARKER, wp, CooldownTypes.BUFF, cooldownManager -> {
-                                }, Overheal.OVERHEAL_DURATION * 20);
                     } else {
                         final Location loc = target.getLocation();
                         final Vector v = player.getLocation().toVector().subtract(loc.toVector()).normalize().multiply(-1.1).setY(0.2);

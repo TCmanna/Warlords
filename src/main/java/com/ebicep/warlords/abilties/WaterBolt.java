@@ -15,11 +15,11 @@ import javax.annotation.Nonnull;
 public class WaterBolt extends AbstractProjectileBase {
 
     private static final int MAX_FULL_DAMAGE_DISTANCE = 40;
-    private static final double DIRECT_HIT_MULTIPLIER = 1.15;
+    private static final double DIRECT_HIT_MULTIPLIER = 1.3;
     private static final float HITBOX = 4;
 
     public WaterBolt() {
-        super("Water Bolt", 315, 434, 0, 80, 20, 175, 2, 300, true);
+        super("Water Bolt", 323, 452, 0, 85, 20, 175, 2, 300, true);
     }
 
     @Override
