@@ -14,8 +14,8 @@ import org.bukkit.entity.Player;
 public class Inferno extends AbstractAbility {
 
     private final int duration = 18;
-    private int critChanceIncrease = 30;
-    private int critMultiplierIncrease = 30;
+    private int critChanceIncrease = 25;
+    private int critMultiplierIncrease = 75;
 
     public Inferno() {
         super("Inferno", 0, 0, 46.98f, 0, 0, 0);
