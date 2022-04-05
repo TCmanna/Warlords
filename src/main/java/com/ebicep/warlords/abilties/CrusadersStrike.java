@@ -11,8 +11,8 @@ import java.util.Comparator;
 
 public class CrusadersStrike extends AbstractStrikeBase {
 
-    private final int energyGiven = 24;
-    private final int energyRadius = 10;
+    private final int energyGiven = 30;
+    private final int energyRadius = 25;
 
     public CrusadersStrike() {
         super("Crusader's Strike", 326, 441, 0, 90, 25, 175);
@@ -23,10 +23,7 @@ public class CrusadersStrike extends AbstractStrikeBase {
         description = "§7Strike the targeted enemy player,\n" +
                 "§7causing §c" + format(minDamageHeal) + " §7- §c" + format(maxDamageHeal) + " §7damage and\n" +
                 "§7restoring §e" + energyGiven + " §7energy to two nearby\n" +
-                "§7allies within §e" + energyRadius + " §7blocks." +
-                "\n\n" +
-                "§7MARKED allies get priority in restoring energy and\n" +
-                "§7increases their speed by §e40% §7for §61 §7second.";
+                "§7allies within §e" + energyRadius + " §7blocks.";
     }
 
     @Override
@@ -46,9 +43,6 @@ public class CrusadersStrike extends AbstractStrikeBase {
                     ))
                 .limit(2)
                 .forEach((nearTeamPlayer) -> {
-                    if (nearTeamPlayer.getCooldownManager().hasCooldown(HolyRadianceCrusader.class)) {
-                        nearTeamPlayer.getSpeed().addSpeedModifier("CRUSADER MARK", 40, 20, "BASE"); // 20 ticks
-                    }
                     nearTeamPlayer.addEnergy(wp, name, energyGiven);
                 });
     }
