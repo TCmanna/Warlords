@@ -14,7 +14,7 @@ import org.bukkit.entity.Player;
 public class Repentance extends AbstractAbility {
 
     private float pool = 0;
-    private int damageConvertPercent = 10;
+    private int damageConvertPercent = 15;
     private final int duration = 12;
 
     public Repentance() {

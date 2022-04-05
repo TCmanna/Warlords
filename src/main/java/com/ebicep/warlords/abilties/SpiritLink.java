@@ -106,7 +106,7 @@ public class SpiritLink extends AbstractChainBase {
         ) {
             @Override
             public float modifyDamageAfterInterveneFromSelf(WarlordsDamageHealingEvent event, float currentDamageValue) {
-                float newDamageValue = currentDamageValue * .85f;
+                float newDamageValue = currentDamageValue * .8f;
                 event.getPlayer().addAbsorbed(Math.abs(currentDamageValue - newDamageValue));
                 return newDamageValue;
             }
@@ -130,13 +130,13 @@ public class SpiritLink extends AbstractChainBase {
                 .ifPresent(regularCooldown -> {
                     regularCooldown.setTicksLeft(Math.min(regularCooldown.getTicksLeft() + 10, 6 * 20));
                 });
-        warlordsPlayer.addHealingInstance(warlordsPlayer, "Soulbinding Weapon", 400, 400, -1, 100, false, false);
+        warlordsPlayer.addHealingInstance(warlordsPlayer, "Soulbinding Weapon", 420, 420, -1, 100, false, false);
         for (WarlordsPlayer nearPlayer : PlayerFilter
                 .entitiesAround(warlordsPlayer, 8, 8, 8)
                 .aliveTeammatesOfExcludingSelf(warlordsPlayer)
                 .limit(2)
         ) {
-            nearPlayer.addHealingInstance(warlordsPlayer, "Soulbinding Weapon", 200, 200, -1, 100, false, false);
+            nearPlayer.addHealingInstance(warlordsPlayer, "Soulbinding Weapon", 420, 420, -1, 100, false, false);
         }
     }
 }
