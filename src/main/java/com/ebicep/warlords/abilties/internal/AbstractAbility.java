@@ -57,10 +57,11 @@ public abstract class AbstractAbility {
 
     public abstract List<Pair<String, String>> getAbilityInfo();
 
+
     /**
-     * @param wp
-     * @param player
-     * @return whether the ability has to go on cooldown after activation.
+     * @param wp     WarlordsPlayer to activate the ability for
+     * @param player Player to activate the ability for
+     * @return Whether the ability has to go on cooldown after activation.
      */
     public abstract boolean onActivate(@Nonnull WarlordsPlayer wp, @Nonnull Player player);
 

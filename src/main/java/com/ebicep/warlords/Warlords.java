@@ -33,10 +33,6 @@ import com.ebicep.warlords.events.WarlordsEvents;
 import com.ebicep.warlords.game.*;
 import com.ebicep.warlords.game.option.marker.FlagHolder;
 import com.ebicep.warlords.menu.MenuEventListener;
-import com.ebicep.warlords.party.PartyCommand;
-import com.ebicep.warlords.party.PartyListener;
-import com.ebicep.warlords.party.PartyManager;
-import com.ebicep.warlords.party.StreamCommand;
 import com.ebicep.warlords.player.*;
 import com.ebicep.warlords.player.cooldowns.CooldownFilter;
 import com.ebicep.warlords.player.cooldowns.CooldownManager;
@@ -84,7 +80,6 @@ import static com.ebicep.warlords.util.warlords.Utils.iterable;
 public class Warlords extends JavaPlugin {
 
     public static final HashMap<UUID, Location> spawnPoints = new HashMap<>();
-    public static final PartyManager partyManager = new PartyManager();
     private static final HashMap<UUID, WarlordsPlayer> players = new HashMap<>();
     private static final HashMap<UUID, PlayerSettings> playerSettings = new HashMap<>();
     private static final HashMap<UUID, net.minecraft.server.v1_8_R3.ItemStack> playerHeads = new HashMap<>();
@@ -330,7 +325,7 @@ public class Warlords extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(new WarlordsEvents(), this);
         getServer().getPluginManager().registerEvents(new MenuEventListener(this), this);
-        getServer().getPluginManager().registerEvents(new PartyListener(), this);
+        //getServer().getPluginManager().registerEvents(new PartyListener(), this);
         getServer().getPluginManager().registerEvents(new BotListener(), this);
         getServer().getPluginManager().registerEvents(new RecklessCharge(), this);
         getServer().getPluginManager().registerEvents(new FutureMessageManager(), this);
@@ -973,8 +968,6 @@ public class Warlords extends JavaPlugin {
         new TestCommand().register(this);
         new ParticleQualityCommand().register(this);
         new SpawnTestDummyCommand().register(this);
-        new PartyCommand().register(this);
-        new StreamCommand().register(this);
         new RecordAverageDamageCommand().register(this);
         new ChatChannelCommand().register(this);
         new BotCommands().register(this);

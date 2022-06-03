@@ -6,7 +6,8 @@ import com.ebicep.warlords.game.GameAddon;
 import com.ebicep.warlords.game.GameManager;
 import com.ebicep.warlords.game.state.EndState;
 import com.ebicep.warlords.game.state.PlayingState;
-import com.ebicep.warlords.party.Party;
+import com.ebicep.warlordspartymanager.WarlordsPartyManager;
+import com.ebicep.warlordspartymanager.party.Party;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -36,7 +37,7 @@ public class PrivateGameTerminateCommand extends GameTargetCommand implements Ta
             }
 
             Player player = (Player) sender;
-            Optional<Party> currentParty = Warlords.partyManager.getPartyFromAny(player.getUniqueId());
+            Optional<Party> currentParty = WarlordsPartyManager.getPartyFromAny(player.getUniqueId());
             if (game.getAddons().contains(GameAddon.CUSTOM_GAME)) {
                 if (currentParty.isPresent()) {
                     Player partyLeader = Bukkit.getPlayer(currentParty.get().getPartyLeader().getUuid());

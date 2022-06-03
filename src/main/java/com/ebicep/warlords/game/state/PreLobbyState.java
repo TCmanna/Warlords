@@ -1,5 +1,6 @@
 package com.ebicep.warlords.game.state;
 
+import com.ebicep.chatutils.ChatUtils;
 import com.ebicep.jda.BotManager;
 import com.ebicep.warlords.Warlords;
 import com.ebicep.warlords.game.Game;
@@ -11,14 +12,13 @@ import com.ebicep.warlords.game.option.marker.LobbyLocationMarker;
 import com.ebicep.warlords.player.*;
 import com.ebicep.warlords.sr.SRCalculator;
 import com.ebicep.warlords.util.warlords.Utils;
+import com.ebicep.warlordspartymanager.WarlordsPartyManager;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
-
-import static com.ebicep.warlords.util.chat.ChatUtils.sendMessage;
 
 public class PreLobbyState implements State, TimerDebugAble {
     public static final String WARLORDS_DATABASE_MESSAGEFEED = "warlords.database.messagefeed";
@@ -65,23 +65,23 @@ public class PreLobbyState implements State, TimerDebugAble {
                 });
                 if (time == 30) {
                     game.forEachOnlinePlayerWithoutSpectators((player, team) -> {
-                        sendMessage(player, false, ChatColor.YELLOW + "The game starts in " + ChatColor.GREEN + "30 " + ChatColor.YELLOW + "seconds!");
+                        ChatUtils.sendMessage(player, false, ChatColor.YELLOW + "The game starts in " + ChatColor.GREEN + "30 " + ChatColor.YELLOW + "seconds!");
                         player.playSound(player.getLocation(), Sound.NOTE_STICKS, 1, 1);
                     });
                 } else if (time == 20) {
                     game.forEachOnlinePlayerWithoutSpectators((player, team) -> {
-                        sendMessage(player, false, ChatColor.YELLOW + "The game starts in 20 seconds!");
+                        ChatUtils.sendMessage(player, false, ChatColor.YELLOW + "The game starts in 20 seconds!");
                         player.playSound(player.getLocation(), Sound.NOTE_STICKS, 1, 1);
                     });
                 } else if (time == 10) {
                     game.forEachOnlinePlayerWithoutSpectators((player, team) -> {
-                        sendMessage(player, false, ChatColor.YELLOW + "The game starts in " + ChatColor.GOLD + "10 " + ChatColor.YELLOW + "seconds!");
+                        ChatUtils.sendMessage(player, false, ChatColor.YELLOW + "The game starts in " + ChatColor.GOLD + "10 " + ChatColor.YELLOW + "seconds!");
                         player.playSound(player.getLocation(), Sound.NOTE_STICKS, 1, 1);
                     });
                 } else if (time <= 5 && time != 0) {
                     game.forEachOnlinePlayerWithoutSpectators((player, team) -> {
                         String s = time == 1 ? "!" : "s!";
-                        sendMessage(player, false, ChatColor.YELLOW + "The game starts in " + ChatColor.RED + time + ChatColor.YELLOW + " second" + s);
+                        ChatUtils.sendMessage(player, false, ChatColor.YELLOW + "The game starts in " + ChatColor.RED + time + ChatColor.YELLOW + " second" + s);
                         player.playSound(player.getLocation(), Sound.NOTE_STICKS, 1, 1);
                     });
                 } else if (time == 0) {
@@ -114,7 +114,7 @@ public class PreLobbyState implements State, TimerDebugAble {
                         if (partyMembers.values().stream().anyMatch(list -> list.contains(player))) {
                             return;
                         }
-                        Warlords.partyManager.getPartyFromAny(player.getUniqueId()).ifPresent(party -> {
+                        WarlordsPartyManager.getPartyFromAny(player.getUniqueId()).ifPresent(party -> {
                             List<Player> partyPlayersInGame = party.getAllPartyPeoplePlayerOnline().stream().filter(p -> game.getPlayers().containsKey(p.getUniqueId())).collect(Collectors.toList());
                             //check if party has more than limit to get on one team, if so then skip party, they get normally balanced
                             if (partyPlayersInGame.size() > sameTeamPartyLimit) {

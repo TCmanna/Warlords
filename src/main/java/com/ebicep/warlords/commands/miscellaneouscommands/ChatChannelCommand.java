@@ -2,6 +2,7 @@ package com.ebicep.warlords.commands.miscellaneouscommands;
 
 import com.ebicep.warlords.Warlords;
 import com.ebicep.warlords.util.chat.ChatChannels;
+import com.ebicep.warlordspartymanager.WarlordsPartyManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -35,8 +36,8 @@ public class ChatChannelCommand implements CommandExecutor {
                             return true;
                         case "p":
                         case "party":
-                            if(Warlords.partyManager.inAParty(uuid)) {
-                                if(chatChannel == ChatChannels.PARTY) {
+                            if (WarlordsPartyManager.inAParty(uuid)) {
+                                if (chatChannel == ChatChannels.PARTY) {
                                     player.sendMessage(ChatColor.RED + "You are already in this channel");
                                 } else {
                                     Warlords.playerChatChannels.put(uuid, ChatChannels.PARTY);
@@ -64,7 +65,7 @@ public class ChatChannelCommand implements CommandExecutor {
                     if(s.equalsIgnoreCase("achat") || s.equalsIgnoreCase("ac")) {
                         Warlords.playerChatChannels.put(uuid, ChatChannels.ALL);
                     } else {
-                        if(!Warlords.partyManager.inAParty(uuid)) {
+                        if (!WarlordsPartyManager.inAParty(uuid)) {
                             player.sendMessage(ChatColor.RED + "You must be in a party to type in the party channel");
                             return true;
                         }

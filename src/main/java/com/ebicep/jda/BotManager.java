@@ -11,6 +11,7 @@ import com.ebicep.warlords.game.option.WinAfterTimeoutOption;
 import com.ebicep.warlords.game.state.PlayingState;
 import com.ebicep.warlords.game.state.PreLobbyState;
 import com.ebicep.warlords.util.warlords.Utils;
+import com.ebicep.warlordspartymanager.WarlordsPartyManager;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -193,7 +194,7 @@ public class BotManager {
             }
         }
         StringBuilder stringBuilder = new StringBuilder("**Parties**: ");
-        Warlords.partyManager.getParties().forEach(party -> stringBuilder.append(party.getLeaderName()).append(" (").append(party.getPartyPlayers().size()).append("), "));
+        WarlordsPartyManager.getParties().forEach(party -> stringBuilder.append(party.getLeaderName()).append(" (").append(party.getPartyPlayers().size()).append("), "));
         stringBuilder.setLength(stringBuilder.length() - 1);
         eb.appendDescription(stringBuilder);
 

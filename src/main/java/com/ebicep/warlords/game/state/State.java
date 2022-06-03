@@ -39,7 +39,8 @@ public interface State {
      * Called when a player joins the server while they were part of a game.
      * Also called directly after adding a player into the game if they were
      * online at that moment
-     * @param player 
+     *
+     * @param player The player
      */
     default void onPlayerReJoinGame(Player player) {
     }

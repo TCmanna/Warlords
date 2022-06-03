@@ -440,6 +440,7 @@ public enum ParticleEffect {
     /**
      * Determine if this particle effect has a specific property
      *
+     * @param property Particle property to check for
      * @return Whether it has the property or not
      */
     public boolean hasProperty(ParticleProperty property) {
@@ -584,7 +585,6 @@ public enum ParticleEffect {
      * @throws ParticleDataException    If the particle effect requires additional data
      * @throws IllegalArgumentException If the particle effect requires water and none is at the center location
      * @see ParticlePacket
-     * @see ParticlePacket#sendTo(Location, List)
      */
     public void display(float offsetX, float offsetY, float offsetZ, float speed, int amount, Location center, Collection<Player> players) throws ParticleVersionException, ParticleDataException, IllegalArgumentException {
         if (!isSupported()) {
@@ -612,7 +612,6 @@ public enum ParticleEffect {
      * @throws ParticleVersionException If the particle effect is not supported by the server version
      * @throws ParticleDataException    If the particle effect requires additional data
      * @throws IllegalArgumentException If the particle effect requires water and none is at the center location
-     * @see #display(float, float, float, float, int, Location, List)
      */
     public void display(float offsetX, float offsetY, float offsetZ, float speed, int amount, Location center, Player... players) throws ParticleVersionException, ParticleDataException, IllegalArgumentException {
         display(offsetX, offsetY, offsetZ, speed, amount, center, Arrays.asList(players));

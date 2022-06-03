@@ -1,7 +1,7 @@
 package com.ebicep.warlords.poll.polls;
 
-import com.ebicep.warlords.party.Party;
 import com.ebicep.warlords.poll.AbstractPoll;
+import com.ebicep.warlordspartymanager.party.Party;
 import org.bukkit.entity.Player;
 
 import java.util.List;

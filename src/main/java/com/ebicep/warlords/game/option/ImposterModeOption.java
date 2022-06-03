@@ -1,5 +1,6 @@
 package com.ebicep.warlords.game.option;
 
+import com.ebicep.chatutils.ChatUtils;
 import com.ebicep.warlords.Warlords;
 import com.ebicep.warlords.game.Game;
 import com.ebicep.warlords.game.Team;
@@ -10,7 +11,6 @@ import com.ebicep.warlords.game.state.PlayingState;
 import com.ebicep.warlords.player.WarlordsPlayer;
 import com.ebicep.warlords.poll.polls.GamePoll;
 import com.ebicep.warlords.util.bukkit.PacketUtils;
-import com.ebicep.warlords.util.chat.ChatUtils;
 import com.ebicep.warlords.util.warlords.GameRunnable;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;

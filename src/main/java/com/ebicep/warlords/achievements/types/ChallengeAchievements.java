@@ -1,5 +1,6 @@
 package com.ebicep.warlords.achievements.types;
 
+import com.ebicep.chatutils.ChatUtils;
 import com.ebicep.warlords.abilties.*;
 import com.ebicep.warlords.achievements.Achievement;
 import com.ebicep.warlords.events.WarlordsDamageHealingFinalEvent;
@@ -10,7 +11,6 @@ import com.ebicep.warlords.player.cooldowns.CooldownFilter;
 import com.ebicep.warlords.player.cooldowns.cooldowns.PersistentCooldown;
 import com.ebicep.warlords.player.cooldowns.cooldowns.RegularCooldown;
 import com.ebicep.warlords.util.bukkit.WordWrap;
-import com.ebicep.warlords.util.chat.ChatUtils;
 import com.ebicep.warlords.util.warlords.PlayerFilter;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;

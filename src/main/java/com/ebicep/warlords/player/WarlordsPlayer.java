@@ -207,6 +207,7 @@ public final class WarlordsPlayer {
      * @param critChance      The critical chance of the damage instance.
      * @param critMultiplier  The critical multiplier of the damage instance.
      * @param ignoreReduction Whether the instance has to ignore damage reductions.
+     * @return The damage instance.
      */
     public Optional<WarlordsDamageHealingFinalEvent> addDamageInstance(
             WarlordsPlayer attacker,
@@ -607,6 +608,7 @@ public final class WarlordsPlayer {
      * @param critMultiplier        The critical multiplier of the damage instance.
      * @param ignoreReduction       Whether the instance has to ignore damage reductions.
      * @param isLastStandFromShield Whether the instance if from last stand and absorbed healing
+     * @return The healing instance.
      */
     public Optional<WarlordsDamageHealingFinalEvent> addHealingInstance(
             WarlordsPlayer attacker,

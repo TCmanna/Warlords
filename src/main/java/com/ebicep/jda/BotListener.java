@@ -9,6 +9,7 @@ import com.ebicep.warlords.player.Specializations;
 import com.ebicep.warlords.util.bukkit.ItemBuilder;
 import com.ebicep.warlords.util.bukkit.PacketUtils;
 import com.ebicep.warlords.util.warlords.Utils;
+import com.ebicep.warlordspartymanager.WarlordsPartyManager;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
@@ -215,7 +216,7 @@ public class BotListener extends ListenerAdapter implements Listener {
                                             if (offlinePlayer == null) continue;
                                             UUID uuid = offlinePlayer.getUniqueId();
                                             if (resetMenu.get()) {
-                                                Warlords.partyManager.getPartyFromAny(uuid).ifPresent(party -> party.getRegularGamesMenu().reset());
+                                                WarlordsPartyManager.getPartyFromAny(uuid).ifPresent(party -> party.getRegularGamesMenu().reset());
                                                 resetMenu.set(false);
                                             }
                                             //includes offline players
@@ -233,7 +234,7 @@ public class BotListener extends ListenerAdapter implements Listener {
                                                 }
                                                 // TODO: fix
                                                 /*if (!isExperimental) {
-                                                    Warlords.partyManager.getPartyFromAny(uuid).ifPresent(party -> {
+                                                    WarlordsPartyManager.getPartyFromAny(uuid).ifPresent(party -> {
                                                         party.getRegularGamesMenu().getRegularGamePlayers().add(
                                                                 new RegularGamesMenu.RegularGamePlayer(uuid, isBlueTeam ? Team.BLUE : Team.RED, Classes.getClass(spec))
                                                         );
@@ -242,7 +243,7 @@ public class BotListener extends ListenerAdapter implements Listener {
                                             } else {
                                                 // TODO: fix
                                                 /*if (!isExperimental) {
-                                                    Warlords.partyManager.getPartyFromAny(uuid).ifPresent(party -> {
+                                                    WarlordsPartyManager.getPartyFromAny(uuid).ifPresent(party -> {
                                                         party.getRegularGamesMenu().getRegularGamePlayers().add(
                                                                 new RegularGamesMenu.RegularGamePlayer(uuid, isBlueTeam ? Team.BLUE : Team.RED, Classes.PYROMANCER)
                                                         );
@@ -250,7 +251,7 @@ public class BotListener extends ListenerAdapter implements Listener {
                                                 }*/
                                             }
                                             if (!isExperimental) {
-                                                Warlords.partyManager.getPartyFromAny(uuid).ifPresent(party -> {
+                                                WarlordsPartyManager.getPartyFromAny(uuid).ifPresent(party -> {
                                                     if (offlinePlayer.isOnline()) {
                                                         offlinePlayer.getPlayer().getInventory().setItem(7,
                                                                 new ItemBuilder((isBlueTeam ? Team.BLUE : Team.RED).getItem()).name("§aTeam Builder")

@@ -28,10 +28,10 @@ public class FireWorkEffectPlayer {
      * Play a pretty firework at the location with the FireworkEffect when
      * called
      *
-     * @param world
-     * @param loc
-     * @param fe
-     * @return
+     * @param world The world to play the firework in
+     * @param loc   The location to play the firework at
+     * @param fe    The FireworkEffect to play
+     * @return true if the firework was played, false if it was not
      */
     public static boolean playFirework(World world, Location loc, FireworkEffect... fe) {
         Objects.requireNonNull(world, "world == null");

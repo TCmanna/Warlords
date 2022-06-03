@@ -2,9 +2,10 @@ package com.ebicep.warlords.commands.debugcommands.game;
 
 import com.ebicep.warlords.Warlords;
 import com.ebicep.warlords.game.*;
-import com.ebicep.warlords.party.Party;
 import com.ebicep.warlords.util.java.Pair;
 import com.ebicep.warlords.util.warlords.Utils;
+import com.ebicep.warlordspartymanager.WarlordsPartyManager;
+import com.ebicep.warlordspartymanager.party.Party;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
@@ -207,7 +208,7 @@ public class GameStartCommand implements TabExecutor {
     }
 
     public static void startGame(Player sender, String[] args) {
-        Optional<Party> party = Warlords.partyManager.getPartyFromAny(sender.getUniqueId());
+        Optional<Party> party = WarlordsPartyManager.getPartyFromAny(sender.getUniqueId());
 
         List<Player> people = party
                 .map(Party::getAllPartyPeoplePlayerOnline)
@@ -254,7 +255,7 @@ public class GameStartCommand implements TabExecutor {
         System.out.println(sender.getName() + " tried to use start command");
         sender.sendMessage(ChatColor.RED + "This command is disabled, use the " + (sender.hasPermission("warlords.game.debug") ? "emerald" : "blaze powder") + " to start a game.");
         return true;
-//        Optional<Party> party = Warlords.partyManager.getPartyFromAny(((Player) sender).getUniqueId());
+//        Optional<Party> party = WarlordsPartyManager.getPartyFromAny(((Player) sender).getUniqueId());
 //
 //        List<Player> people = party
 //                .map(Party::getAllPartyPeoplePlayerOnline)

@@ -1,8 +1,8 @@
 package com.ebicep.warlords.commands.debugcommands.misc;
 
+import com.ebicep.chatutils.ChatUtils;
 import com.ebicep.warlords.Warlords;
 import com.ebicep.warlords.commands.BaseCommand;
-import com.ebicep.warlords.util.chat.ChatUtils;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;

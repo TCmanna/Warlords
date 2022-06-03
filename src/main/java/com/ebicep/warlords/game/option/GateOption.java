@@ -1,5 +1,6 @@
 package com.ebicep.warlords.game.option;
 
+import com.ebicep.chatutils.ChatUtils;
 import com.ebicep.warlords.game.Game;
 import com.ebicep.warlords.game.Team;
 import com.ebicep.warlords.game.option.marker.DebugLocationMarker;
@@ -20,7 +21,6 @@ import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.Map;
 
-import static com.ebicep.warlords.util.chat.ChatUtils.sendMessage;
 import static com.ebicep.warlords.util.warlords.Utils.iterable;
 
 public class GateOption extends AbstractCuboidOption implements  TimerSkipAbleMarker {
@@ -140,7 +140,7 @@ public class GateOption extends AbstractCuboidOption implements  TimerSkipAbleMa
             for (Map.Entry<Player, Team> entry : iterable(game.onlinePlayersWithoutSpectators())) {
                 Player player = entry.getKey();
                 player.playSound(player.getLocation(), Sound.WITHER_SPAWN, 5, 1);
-                sendMessage(player, false, ChatColor.YELLOW + "Gates opened! " + ChatColor.RED + "FIGHT!");
+                ChatUtils.sendMessage(player, false, ChatColor.YELLOW + "Gates opened! " + ChatColor.RED + "FIGHT!");
 
                 Utils.resetPlayerMovementStatistics(player);
             }
@@ -209,7 +209,7 @@ public class GateOption extends AbstractCuboidOption implements  TimerSkipAbleMa
                             for (Map.Entry<Player, Team> entry : iterable(game.onlinePlayersWithoutSpectators())) {
                                 Player player = entry.getKey();
                                 String s = delay == 1 ? "" : "s";
-                                sendMessage(player, false, ChatColor.YELLOW + "The gates will fall in " + ChatColor.RED + delay + ChatColor.YELLOW + " second" + s + "!");
+                                ChatUtils.sendMessage(player, false, ChatColor.YELLOW + "The gates will fall in " + ChatColor.RED + delay + ChatColor.YELLOW + " second" + s + "!");
                             }
                             break;
                     }

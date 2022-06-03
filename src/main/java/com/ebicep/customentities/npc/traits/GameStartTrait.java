@@ -2,7 +2,8 @@ package com.ebicep.customentities.npc.traits;
 
 import com.ebicep.warlords.Warlords;
 import com.ebicep.warlords.game.GameMode;
-import com.ebicep.warlords.party.Party;
+import com.ebicep.warlordspartymanager.WarlordsPartyManager;
+import com.ebicep.warlordspartymanager.party.Party;
 import net.citizensnpcs.api.event.NPCLeftClickEvent;
 import net.citizensnpcs.api.event.NPCRightClickEvent;
 import net.citizensnpcs.api.trait.Trait;
@@ -58,7 +59,7 @@ public class GameStartTrait extends Trait {
     private void tryToJoinQueue(Player player) {
 
         //check if player is in a party, they must be leader to join
-        Optional<Party> party = Warlords.partyManager.getPartyFromAny(player.getUniqueId());
+        Optional<Party> party = WarlordsPartyManager.getPartyFromAny(player.getUniqueId());
         List<Player> people = party.map(Party::getAllPartyPeoplePlayerOnline).orElseGet(() -> Collections.singletonList(player));
         if (party.isPresent()) {
             if (!party.get().getPartyLeader().getUuid().equals(player.getUniqueId())) {

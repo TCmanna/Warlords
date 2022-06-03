@@ -49,9 +49,7 @@ public abstract class AbstractPiercingProjectileBase extends AbstractAbility {
     }
 
     /**
-     * Gets the sound used when this projectile is activated
-     *
-     * @return
+     * @return The sound used when this projectile is activated
      */
     @Nullable
     protected abstract String getActivationSound();
@@ -66,7 +64,7 @@ public abstract class AbstractPiercingProjectileBase extends AbstractAbility {
     /**
      * Plays this projectile effect at a location
      *
-     * @param projectile
+     * @param projectile The projectile
      */
     @SuppressWarnings("deprecation")
     protected void playEffect(@Nonnull InternalProjectile projectile) {
@@ -79,8 +77,8 @@ public abstract class AbstractPiercingProjectileBase extends AbstractAbility {
     /**
      * Should the collision with this object cause the projectile to consider itself destroyed?
      *
-     * @param projectile
-     * @param block
+     * @param projectile The projectile
+     * @param block      The block
      * @return true if it should destroy itself
      */
     protected abstract boolean shouldEndProjectileOnHit(@Nonnull InternalProjectile projectile, Block block);
@@ -88,8 +86,8 @@ public abstract class AbstractPiercingProjectileBase extends AbstractAbility {
     /**
      * Should the collision with this object cause the projectile to consider itself destroyed?
      *
-     * @param projectile
-     * @param wp
+     * @param projectile The projectile
+     * @param wp WarlordsPlayer
      * @return true if it should destroy itself
      */
     protected abstract boolean shouldEndProjectileOnHit(@Nonnull InternalProjectile projectile, WarlordsPlayer wp);
@@ -97,9 +95,9 @@ public abstract class AbstractPiercingProjectileBase extends AbstractAbility {
     /**
      * Called when the projectile hits a player, but the `shouldEndProjectileOnHit` says the projectile keeps flying
      *
-     * @param projectile
-     * @param hit
-     * @param impactLocation
+     * @param projectile The projectile
+     * @param hit The player that was hit
+     * @param impactLocation The location of the impact
      */
     protected abstract void onNonCancellingHit(
             @Nonnull InternalProjectile projectile,
@@ -135,7 +133,7 @@ public abstract class AbstractPiercingProjectileBase extends AbstractAbility {
     /**
      * Modifies the speed every tick, in case it is needed
      *
-     * @param projectile
+     * @param projectile The projectile
      */
     @SuppressWarnings("deprecation")
     protected void updateSpeed(InternalProjectile projectile) {
@@ -252,9 +250,9 @@ public abstract class AbstractPiercingProjectileBase extends AbstractAbility {
     /**
      * Calculated the initial projectile location
      *
-     * @param shooter
-     * @param startingLocation
-     * @return
+     * @param shooter The shooter of the projectile
+     * @param startingLocation The location the projectile is shot from
+     * @return The calculated initial projectile location
      */
     protected Location getProjectileStartingLocation(WarlordsPlayer shooter, Location startingLocation) {
         return startingLocation.clone().add(startingLocation.getDirection().multiply(0.2));
@@ -263,9 +261,9 @@ public abstract class AbstractPiercingProjectileBase extends AbstractAbility {
     /**
      * Calculated the initial projectile speed
      *
-     * @param shooter
-     * @param startingLocation
-     * @return
+     * @param shooter The shooter of the projectile
+     * @param startingLocation The location the projectile is shot from
+     * @return The calculated initial projectile speed
      */
     protected Vector getProjectileStartingSpeed(WarlordsPlayer shooter, Location startingLocation) {
         return startingLocation.getDirection().multiply(projectileSpeed);

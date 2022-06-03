@@ -1,8 +1,14 @@
 name: Warlords
 version: Fabled Heroics
-authors: [ebic, Plikie]
+authors:
+  - ebic
+  - Plikie
 main: com.ebicep.warlords.Warlords
-depend: [ MultiWorld, HolographicDisplays, ProtocolLib ]
+depend:
+  - MultiWorld
+  - HolographicDisplays
+  - ProtocolLib
+  - WarlordsPartyManager
 load: POSTWORLD
 commands:
   start:
@@ -46,10 +52,7 @@ commands:
     usage: /pq [LOW,MEDIUM,HIGH]
   spawntestdummy:
     description: Spawns Test Dummy
-    usage: /spawntestdummy [TEAM] [TAKE DAMAGE (TRUE/FALSE) ]
-  party:
-    description: Party options
-    aliases: [ party, p ]
+    usage: /spawntestdummy [TEAM (RED/BLUE)] [TAKE DAMAGE (TRUE/FALSE) ]
   stream:
     description: Creates a new party where anyone can join
     usage: /stream

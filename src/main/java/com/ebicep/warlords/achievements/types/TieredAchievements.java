@@ -1,11 +1,11 @@
 package com.ebicep.warlords.achievements.types;
 
+import com.ebicep.chatutils.ChatUtils;
 import com.ebicep.warlords.achievements.Achievement;
 import com.ebicep.warlords.database.repositories.player.pojos.general.DatabasePlayer;
 import com.ebicep.warlords.game.GameMode;
 import com.ebicep.warlords.player.WarlordsPlayer;
 import com.ebicep.warlords.util.bukkit.WordWrap;
-import com.ebicep.warlords.util.chat.ChatUtils;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;

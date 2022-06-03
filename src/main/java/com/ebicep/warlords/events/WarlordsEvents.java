@@ -1,5 +1,6 @@
 package com.ebicep.warlords.events;
 
+import com.ebicep.chatutils.ChatUtils;
 import com.ebicep.warlords.Warlords;
 import com.ebicep.warlords.abilties.*;
 import com.ebicep.warlords.classes.AbstractPlayerClass;
@@ -17,7 +18,6 @@ import com.ebicep.warlords.game.flags.WaitingFlagLocation;
 import com.ebicep.warlords.game.option.marker.FlagHolder;
 import com.ebicep.warlords.game.state.EndState;
 import com.ebicep.warlords.game.state.PreLobbyState;
-import com.ebicep.warlords.party.RegularGamesMenu;
 import com.ebicep.warlords.permissions.PermissionHandler;
 import com.ebicep.warlords.player.*;
 import com.ebicep.warlords.player.cooldowns.CooldownFilter;
@@ -25,8 +25,9 @@ import com.ebicep.warlords.player.cooldowns.cooldowns.PersistentCooldown;
 import com.ebicep.warlords.util.bukkit.ItemBuilder;
 import com.ebicep.warlords.util.bukkit.PacketUtils;
 import com.ebicep.warlords.util.chat.ChatChannels;
-import com.ebicep.warlords.util.chat.ChatUtils;
 import com.ebicep.warlords.util.warlords.Utils;
+import com.ebicep.warlordspartymanager.RegularGamesMenu;
+import com.ebicep.warlordspartymanager.WarlordsPartyManager;
 import org.bukkit.*;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.*;
 import org.bukkit.entity.*;
@@ -46,7 +47,6 @@ import org.bukkit.event.vehicle.VehicleExitEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffectType;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -177,7 +177,7 @@ public class WarlordsEvents implements Listener {
             }
 
             if (!fromGame) {
-                Warlords.partyManager.getPartyFromAny(player.getUniqueId()).ifPresent(party -> {
+                WarlordsPartyManager.getPartyFromAny(player.getUniqueId()).ifPresent(party -> {
                     List<RegularGamesMenu.RegularGamePlayer> playerList = party.getRegularGamesMenu().getRegularGamePlayers();
                     if (!playerList.isEmpty()) {
                         playerList.stream()
@@ -185,9 +185,9 @@ public class WarlordsEvents implements Listener {
                                 .findFirst()
                                 .ifPresent(regularGamePlayer -> player.getInventory().setItem(7,
                                         // TODO: Fix team item
-                                                // @see Team.java
-                                                new ItemBuilder(Material.WOOL).name("§aTeam Builder")
-                                                        .get()
+                                        // @see Team.java
+                                        new ItemBuilder(Material.WOOL).name("§aTeam Builder")
+                                                .get()
                                         )
                                 );
                     }
@@ -362,21 +362,21 @@ public class WarlordsEvents implements Listener {
                     openMapPickerMenu(player);
                 } else if (itemHeld.getType() == Material.WOOL) {
                     if (itemHeld.getItemMeta().getDisplayName() != null && itemHeld.getItemMeta().getDisplayName().equals(ChatColor.GREEN + "Team Builder")) {
-                        Warlords.partyManager.getPartyFromAny(player.getUniqueId()).ifPresent(party -> {
-                            List<RegularGamesMenu.RegularGamePlayer> playerList = party.getRegularGamesMenu().getRegularGamePlayers();
-                            if (!playerList.isEmpty()) {
-                                party.getRegularGamesMenu().openMenuForPlayer(player);
-                                new BukkitRunnable() {
-                                    @Override
-                                    public void run() {
-                                        if (player.getOpenInventory().getTopInventory().getName().equals("Team Builder")) {
-                                            party.getRegularGamesMenu().openMenuForPlayer(player);
-                                        } else {
-                                            this.cancel();
-                                        }
-                                    }
-                                }.runTaskTimer(Warlords.getInstance(), 20, 10);
-                            }
+                        WarlordsPartyManager.getPartyFromAny(player.getUniqueId()).ifPresent(party -> {
+//                            List<RegularGamesMenu.RegularGamePlayer> playerList = party.getRegularGamesMenu().getRegularGamePlayers();
+//                            if (!playerList.isEmpty()) {
+//                                party.getRegularGamesMenu().openMenuForPlayer(player);
+//                                new BukkitRunnable() {
+//                                    @Override
+//                                    public void run() {
+//                                        if (player.getOpenInventory().getTopInventory().getName().equals("Team Builder")) {
+//                                            party.getRegularGamesMenu().openMenuForPlayer(player);
+//                                        } else {
+//                                            this.cancel();
+//                                        }
+//                                    }
+//                                }.runTaskTimer(Warlords.getInstance(), 20, 10);
+//                            }
                         });
                     }
                 }
@@ -648,12 +648,12 @@ public class WarlordsEvents implements Listener {
                         }
                         break;
                     case PARTY:
-                        if (Warlords.partyManager.getPartyFromAny(uuid).isPresent()) {
+                        if (WarlordsPartyManager.getPartyFromAny(uuid).isPresent()) {
                             e.setFormat(ChatColor.BLUE + "Party" + ChatColor.DARK_GRAY + " > " +
                                     (prefixColor) + "%1$s" +
                                     ChatColor.WHITE + ": %2$s"
                             );
-                            e.getRecipients().retainAll(Warlords.partyManager.getPartyFromAny(uuid).get().getAllPartyPeoplePlayerOnline());
+                            e.getRecipients().retainAll(WarlordsPartyManager.getPartyFromAny(uuid).get().getAllPartyPeoplePlayerOnline());
                         } else {
                             player.sendMessage(ChatColor.RED + "You are not in a party and were moved to the ALL channel.");
                             Warlords.playerChatChannels.put(uuid, ChatChannels.ALL);
