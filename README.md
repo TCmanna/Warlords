@@ -6,6 +6,6 @@ Our version holds various QoL improvements, a new class, new maps and balance ch
 
 Project built upon the frameworks of Spigot, Bukkit and Minecraft. Made for Minecraft versions 1.8 and 1.8.9.
 
-You may use our work for your own purposes as long as we are credited.
+You may use our work for your own purposes as long as we are credited.test
 
 
